@@ -1,6 +1,6 @@
 {
   "name": "@livelybone/use-mounted",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "React hook for mounted and unmount, return an object: MutableRefObject<{ mounted: boolean, unmounted: boolean }>",
   "main": "./lib/umd/index.js",
   "module": "./lib/es/index.js",

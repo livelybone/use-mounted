@@ -10,4 +10,5 @@ declare function useMounted(
   unmounted: boolean
 }>
 
-export { UnmountFn, useMounted }
+export default useMounted
+export { UnmountFn }

@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react'
 
 export type UnmountFn = () => void
 
-export function useMounted(mountedFn: () => void | UnmountFn) {
+export default function useMounted(mountedFn: () => void | UnmountFn) {
   const fn = useRef(mountedFn)
   fn.current = mountedFn
   const state = useRef({
