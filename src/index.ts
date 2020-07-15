@@ -1,23 +1,22 @@
 import { useEffect, useRef } from 'react'
 
-export default function useMounted(
-  mountedFn?: () => void,
-  unmountFn?: () => void,
-) {
-  const fns = useRef({ mountedFn, unmountFn })
-  fns.current.mountedFn = mountedFn
-  fns.current.unmountFn = unmountFn
+export type UnmountFn = () => void
 
-  const state = useRef({ mounted: false, unmounted: false })
-
+export function useMounted(mountedFn: () => void | UnmountFn) {
+  const fn = useRef(mountedFn)
+  fn.current = mountedFn
+  const state = useRef({
+    mounted: false,
+    unmounted: false,
+  })
   useEffect(() => {
     state.current.mounted = true
-    fns.current.mountedFn && fns.current.mountedFn()
+    state.current.unmounted = false
+    const unmountedFn = fn.current && fn.current()
     return () => {
-      fns.current.unmountFn && fns.current.unmountFn()
+      if (typeof unmountedFn === 'function') unmountedFn()
       state.current.unmounted = true
     }
   }, [])
-
   return state
 }

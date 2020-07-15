@@ -40,7 +40,10 @@ See what method or params you can use in [index.d.ts](./index.d.ts)
 ```typescript jsx
 import useMounted from '@livelybone/use-mounted'
 const Comp = () => {
-  const mount = useMounted(() => console.log('mounted'), () => console.log('unmounted'))
+  const mount = useMounted(() => {
+    console.log('mounted')
+    return () => console.log('unmounted')
+  })
   console.log(`Is comp mounted? ${mount.current.mounted ? 'Yes' : 'No'}`)
   console.log(`Is comp unmounted? ${mount.current.unmounted ? 'Yes' : 'No'}`)
   return <div></div>
