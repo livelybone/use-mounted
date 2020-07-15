@@ -4,7 +4,7 @@ import { MutableRefObject } from 'react'
 declare type UnmountFn = () => void
 
 declare function useMounted(
-  mountedFn: () => void | UnmountFn,
+  mountedFn?: () => void | UnmountFn,
 ): MutableRefObject<{
   mounted: boolean
   unmounted: boolean
